@@ -17,12 +17,12 @@ import org.springframework.stereotype.Service;
 
 import com.epicc.notcar.TravelInsurance;
 import com.epicc.notcar.TravelInsuranceService;
-import com.sinosoft.utils.DateUtils;
+import com.epicc.utils.DateUtils;
 
 /**
-* @author Áõ·É
-* @version ´´½¨Ê±¼ä£º2018Äê3ÔÂ8ÈÕ ÏÂÎç5:50:49
-* @Description ÂÃÓÎÏÕserviceÊµÏÖÀà
+* @author åˆ˜é£
+* @version åˆ›å»ºæ—¶é—´ï¼š2018å¹´3æœˆ8æ—¥ ä¸‹åˆ3:07:22
+* @Description æ—…æ¸¸é™©serviceå®ç°ç±»
 */
 @Service
 public class TravelInsuranceServiceImpl implements TravelInsuranceService{
@@ -57,8 +57,8 @@ public class TravelInsuranceServiceImpl implements TravelInsuranceService{
 			list.add(personnes);
 //			list.add(entryId);
 //			list.add(sessionId);
-			//¶ÏÑÔ sumPremiums 160.00
-			// ÉèÖÃ²ÎÊı
+			//æ–­è¨€ sumPremiums 160.00
+			//è®¾ç½®å‚æ•°
 			httpPost.setEntity(new UrlEncodedFormEntity(list, "UTF-8"));
 			HttpResponse response = httpClient.execute(httpPost);
 			Header[] allHeaders = response.getAllHeaders();
@@ -68,7 +68,7 @@ public class TravelInsuranceServiceImpl implements TravelInsuranceService{
 			}
 			if (entity != null) {
 				String string = EntityUtils.toString(entity, "utf-8");
-				System.out.println(string);
+				System.err.println(string);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

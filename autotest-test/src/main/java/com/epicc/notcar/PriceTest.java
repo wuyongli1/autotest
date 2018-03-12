@@ -1,39 +1,37 @@
 package com.epicc.notcar;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
+import java.io.File;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.testng.annotations.BeforeClass;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import org.testng.log4testng.Logger;
-
-import com.sinosoft.utils.ExcelUtil;
+import com.epicc.utils.ExcelUtil;
 
 /**
-* @author Áõ·É
-* @version ´´½¨Ê±¼ä£º2018Äê3ÔÂ8ÈÕ ÏÂÎç5:46:38
-* @Description ÀàÃèÊö
+* @author åˆ˜é£
+* @version åˆ›å»ºæ—¶é—´ï¼š2018å¹´3æœˆ8æ—¥ ä¸‹åˆ5:46:38
+* @Description ç±»æè¿°
 */
 @Test
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
-public class PriceTest {
+public class PriceTest extends AbstractTestNGSpringContextTests{
 	Logger logger = Logger.getLogger(PriceTest.class);
-	private TravelInsurance travelInsurance;
+	private List<TravelInsurance> travelInsuranceList = null;
 	
 	@Autowired
 	private TravelInsuranceService tis;
 	
-	//½«excel±í¸ñÊı¾İ³õÊ¼»¯Îª¶ÔÏó
+	//å°†excelè¡¨æ ¼æ•°æ®åˆå§‹åŒ–ä¸ºå¯¹è±¡
 	@BeforeTest
 	public void initModel() {
+		String path = PriceTest.class.getClassLoader().getResource("excel/epicc.xls").getPath();
+		ExcelUtil eu = new ExcelUtil();
 		try {
-			ExcelUtil.initModel(travelInsurance);
-		} catch (FileNotFoundException e) {
-			logger.error("excelÎÄ¼şÂ·¾¶´íÎó£¡");
-			e.printStackTrace();
+			TravelInsuranceVo travelInsuranceVo = eu.setExcelInfo2Bean(new File(path),new TravelInsuranceVo());
+			travelInsuranceList = travelInsuranceVo.getTravelInsuranceList();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -41,6 +39,8 @@ public class PriceTest {
 	
 	@Test
 	public void price() {
-		tis.price(travelInsurance);
+		for (TravelInsurance travelInsurance : travelInsuranceList) {
+			tis.price(travelInsurance);
+		}
 	}
 }

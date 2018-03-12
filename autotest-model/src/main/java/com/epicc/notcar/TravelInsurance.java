@@ -1,18 +1,32 @@
 package com.epicc.notcar;
+
+import com.epicc.annotation.ExcelColName;
+import com.epicc.annotation.ExcelSheetName;
+
 /**
-* @author Áõ·É
-* @version ´´½¨Ê±¼ä£º2018Äê3ÔÂ8ÈÕ ÏÂÎç5:38:56
-* @Description ÂÃÓÎÏÕÊµÌåÀà
+* @author åˆ˜é£
+* @version åˆ›å»ºæ—¶é—´ï¼š2018å¹´3æœˆ8æ—¥ ä¸‹åˆ5:46:38
+* @Description æ—…æ¸¸é™©å®ä½“ç±»
 */
+@ExcelSheetName("å…¨çƒæ—…æ¸¸ä¿é™©")
 public class TravelInsurance {
+	@ExcelColName(value="cooperId")
 	private String cooperId;
+	@ExcelColName(value="å‡ºè®¿ç›®çš„åœ°")
 	private String businessSite;
+	@ExcelColName(value="ä¿é™©ç±»å‹ç¼–å·")
 	private String riskCode;
+	@ExcelColName(value="æ–¹æ¡ˆç¼–å·")
 	private String rationType;
+	@ExcelColName(value="startDate")
 	private String startDate;
+	@ExcelColName(value="endDate")
 	private String endDate;
+	@ExcelColName(value="è¢«ä¿é™©äººæ•°")
 	private String personnes;
+	@ExcelColName(value="entryId")
 	private String entryId;
+	@ExcelColName(value="sessionId")
 	private String sessionId;
 	public String getCooperId() {
 		return cooperId;
@@ -67,5 +81,11 @@ public class TravelInsurance {
 	}
 	public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;
+	}
+	@Override
+	public String toString() {
+		return "TravelInsurance [cooperId=" + cooperId + ", businessSite=" + businessSite + ", riskCode=" + riskCode
+				+ ", rationType=" + rationType + ", startDate=" + startDate + ", endDate=" + endDate + ", personnes="
+				+ personnes + ", entryId=" + entryId + ", sessionId=" + sessionId + "]";
 	}
 }

@@ -1,4 +1,4 @@
-package com.sinosoft.utils;
+package com.epicc.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -6,9 +6,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
-* @author Áõ·É
-* @version ´´½¨Ê±¼ä£º2018Äê3ÔÂ8ÈÕ ÏÂÎç5:57:40
-* @Description ÀàÃèÊö
+* @author åˆ˜é£
+* @version åˆ›å»ºæ—¶é—´ï¼š2018å¹´3æœˆ8æ—¥ ä¸‹åˆ5:46:38
+* @Description æ—¶é—´æ ¼å¼å·¥å…·ç±»
 */
 public class DateUtils {
 	public static String getDateFormat(Date date) {

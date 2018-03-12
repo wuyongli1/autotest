@@ -2,16 +2,54 @@
 <testng-results skipped="0" failed="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="93" started-at="2018-03-08T10:08:38Z" finished-at="2018-03-08T10:08:38Z">
+  <suite name="Default suite" duration-ms="1545" started-at="2018-03-12T10:03:49Z" finished-at="2018-03-12T10:03:50Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="93" started-at="2018-03-08T10:08:38Z" finished-at="2018-03-08T10:08:38Z">
-      <class name="com.epicc.notcar.LogTest">
-        <test-method status="PASS" signature="tsss()[pri:0, instance:com.epicc.notcar.LogTest@51081592]" name="tsss" duration-ms="78" started-at="2018-03-08T18:08:38Z" finished-at="2018-03-08T18:08:38Z">
+    <test name="Default test" duration-ms="1545" started-at="2018-03-12T10:03:49Z" finished-at="2018-03-12T10:03:50Z">
+      <class name="com.epicc.notcar.PriceTest">
+        <test-method status="PASS" signature="initModel()[pri:0, instance:com.epicc.notcar.PriceTest@17211155]" test-instance-name="" name="initModel" is-config="true" duration-ms="234" started-at="2018-03-12T18:03:49Z" finished-at="2018-03-12T18:03:49Z">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tsss -->
-      </class> <!-- com.epicc.notcar.LogTest -->
+        </test-method> <!-- initModel -->
+        <test-method name="springTestContextPrepareTestInstance" test-instance-name="" signature="springTestContextPrepareTestInstance()[pri:0, instance:com.epicc.notcar.PriceTest@17211155]" is-config="true" status="PASS" duration-ms="469" finished-at="2018-03-12T18:03:49Z" started-at="2018-03-12T18:03:49Z" depends-on-methods="org.springframework.test.context.testng.AbstractTestNGSpringContextTests.springTestContextBeforeTestClass">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextPrepareTestInstance -->
+        <test-method status="PASS" signature="springTestContextBeforeTestClass()[pri:0, instance:com.epicc.notcar.PriceTest@17211155]" test-instance-name="" name="springTestContextBeforeTestClass" is-config="true" duration-ms="0" started-at="2018-03-12T18:03:49Z" finished-at="2018-03-12T18:03:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestClass -->
+        <test-method status="PASS" signature="price()[pri:0, instance:com.epicc.notcar.PriceTest@17211155]" test-instance-name="" name="price" duration-ms="795" started-at="2018-03-12T18:03:49Z" finished-at="2018-03-12T18:03:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- price -->
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)[pri:0, instance:com.epicc.notcar.PriceTest@17211155]" test-instance-name="" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="0" started-at="2018-03-12T18:03:49Z" finished-at="2018-03-12T18:03:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.epicc.notcar.PriceTest.price()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextBeforeTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)[pri:0, instance:com.epicc.notcar.PriceTest@17211155]" test-instance-name="" name="springTestContextAfterTestMethod" is-config="true" duration-ms="0" started-at="2018-03-12T18:03:50Z" finished-at="2018-03-12T18:03:50Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.epicc.notcar.PriceTest.price()]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestMethod -->
+        <test-method status="PASS" signature="springTestContextAfterTestClass()[pri:0, instance:com.epicc.notcar.PriceTest@17211155]" test-instance-name="" name="springTestContextAfterTestClass" is-config="true" duration-ms="0" started-at="2018-03-12T18:03:50Z" finished-at="2018-03-12T18:03:50Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- springTestContextAfterTestClass -->
+      </class> <!-- com.epicc.notcar.PriceTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

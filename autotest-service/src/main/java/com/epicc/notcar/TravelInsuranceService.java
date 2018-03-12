@@ -1,9 +1,9 @@
 package com.epicc.notcar;
 
 /**
-* @author Áõ·É
-* @version ´´½¨Ê±¼ä£º2018Äê3ÔÂ8ÈÕ ÏÂÎç5:46:38
-* @Description ÂÃÓÎÏÕservice½Ó¿Ú
+* @author åˆ˜é£
+* @version åˆ›å»ºæ—¶é—´ï¼š2018å¹´3æœˆ8æ—¥ ä¸‹åˆ3:07:22
+* @Description æ—…æ¸¸é™©serviceæ¥å£
 */
 public interface TravelInsuranceService {
 	void price(TravelInsurance travelInsurance);
