@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 /**
 * @author 刘飞
 * @version 创建时间：2018年3月12日 下午4:40:59
-* @Description 用于匹配Excel表中的列(vlaue值必须是Excel文件中第一行的列名)
+* @Description 用于匹配Excel表中的列(value值必须是Excel文件中第一行的列名)
 */
 @Documented
 @Target(ElementType.FIELD)

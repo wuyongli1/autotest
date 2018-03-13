@@ -10,24 +10,42 @@ import com.epicc.annotation.ExcelSheetName;
 */
 @ExcelSheetName("全球旅游保险")
 public class TravelInsurance {
-	@ExcelColName(value="cooperId")
+	@ExcelColName("cooperId")
 	private String cooperId;
-	@ExcelColName(value="出访目的地")
+	
+	@ExcelColName("出访目的地")
 	private String businessSite;
-	@ExcelColName(value="保险类型编号")
+	
+	@ExcelColName("保险类型编号")
 	private String riskCode;
-	@ExcelColName(value="方案编号")
+	
+	@ExcelColName("方案编号")
 	private String rationType;
-	@ExcelColName(value="startDate")
+	
+	@ExcelColName("起保日期")
 	private String startDate;
-	@ExcelColName(value="endDate")
+	
+	@ExcelColName("终保日期")
 	private String endDate;
-	@ExcelColName(value="被保险人数")
+	
+	@ExcelColName("被保险人数")
 	private String personnes;
-	@ExcelColName(value="entryId")
+	
+	@ExcelColName("entryId")
 	private String entryId;
-	@ExcelColName(value="sessionId")
+	
+	@ExcelColName("sessionId")
 	private String sessionId;
+	
+	@ExcelColName("预计结果")
+	private	String expect;
+	
+	public String getExpect() {
+		return expect;
+	}
+	public void setExpect(String expect) {
+		this.expect = expect;
+	}
 	public String getCooperId() {
 		return cooperId;
 	}

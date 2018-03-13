@@ -17,9 +17,4 @@ public class TravelInsuranceVo {
 	public void setTravelInsuranceList(List<TravelInsurance> travelInsuranceList) {
 		TravelInsuranceList = travelInsuranceList;
 	}
-
-	@Override
-	public String toString() {
-		return "TravelInsuranceVo [TravelInsuranceList=" + TravelInsuranceList + "]";
-	}
 }
