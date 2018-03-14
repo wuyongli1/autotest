@@ -101,34 +101,26 @@ public class ExcelUtil {
 		Type[] listType = pType.getActualTypeArguments();
 		// 获取list泛型中的子表class
 		Class sheetClass = (Class) listType[0];
-
 		// 获取子类对应的sheet名
 		ExcelSheetName sheetNameAnno = (ExcelSheetName) sheetClass.getAnnotation(ExcelSheetName.class);
-
 		String sheetName = sheetNameAnno.value();
-
 		// 获取文件后缀
 		String fileExt = file.getName().substring(file.getName().lastIndexOf(".") + 1);
 		// 创建流
 		InputStream input = new FileInputStream(file);
-
 		// 创建Workbook
 		Workbook wb = null;
-
 		// 创建sheet
 		Sheet sheet = null;
-
 		// 根据后缀判断excel 2003 or 2007+
 		if (fileExt.equals("xls")) {
 			wb = (HSSFWorkbook) WorkbookFactory.create(input);
 		} else {
 			wb = new XSSFWorkbook(input);
 		}
-
 		// 获取表
 		sheet = wb.getSheet(sheetName);
 		// 获取行数
-
 		return getExcelInfo2Bean(sheetClass, sheet);
 	}
 
@@ -139,22 +131,20 @@ public class ExcelUtil {
 	// Sheet sheet) throws Exception {
 	private static <T> List<T> getExcelInfo2Bean(Class T, Sheet sheet) throws Exception {
 		Map<String, Integer> cellNameMap = getCellNameMap(sheet);
-
 		// 获取行数
 		int rowNum = sheet.getLastRowNum();
 		if (rowNum == 0) {
 			return new ArrayList<T>();
 		}
-
 		List<T> tList = new ArrayList<T>(rowNum - 1);
-
-		// 获取子表类的属性(对应表中的列)
+		//获取子表类的属性(对应表中的列)
 		Field[] colFields = T.getDeclaredFields();
-		Field[] excelCheckPropertiesDeclaredFields = T.getSuperclass().getDeclaredFields();
-		// (获取只包含自定义注解的属性)
+		Field[] parentColFields = T.getSuperclass().getDeclaredFields();
+		//获取只包含自定义注解的属性
 		Field[] matchedColFields = matchDeclaredFields(colFields, ExcelColName.class);
+		//获取只包含自定义注解的父类属性
+		Field[] parentMatchedColFields = matchDeclaredFields(parentColFields, ExcelColName.class);
 		// 如果包含自定义注解的参数
-
 		// 从第二行开始读取,并设置进实例
 		for (int j = 1; j <= rowNum; j++) {
 			Row row = sheet.getRow(j);
@@ -163,109 +153,10 @@ public class ExcelUtil {
 			}
 			// 创建当前sheet类的实例
 			T sheetBean = (T) T.newInstance();
-
-			// 遍历包含自定义注解的参数
-			if (matchedColFields != null && matchedColFields.length > 0) {
-				for (int i = 0; i < matchedColFields.length; i++) {
-					matchedColFields[i].setAccessible(true);
-					Field colField = matchedColFields[i];
-
-					ExcelColName excelColNameAnno = colField.getAnnotation(ExcelColName.class);
-					String excelColName = excelColNameAnno.value().trim();
-					// 判断该参数是否需要校验
-					boolean isRequired = excelColNameAnno.IsRequired();
-					// 如果为必填字段
-					if (isRequired) {
-						// 遍历每行的每个参数,设置进bean
-						for (int k = 0; k < row.getPhysicalNumberOfCells(); k++) {
-							// 获取sheet类的属性对应的表中的列的cell对象
-							Cell cell = row.getCell(cellNameMap.get(excelColName));
-							String cellValue = "";
-							if (cell != null) {
-								cellValue = getCellValue(cell);
-								// 判断属性类型
-								if (matchedColFields[i].getType().isAssignableFrom(Integer.class)) {
-									matchedColFields[i].set(sheetBean, Integer.parseInt(getCellValue(cell)));
-
-								} else if (matchedColFields[i].getType().isAssignableFrom(Date.class)) {
-									matchedColFields[i].set(sheetBean, getDateCellValue(cell));
-
-								} else if (matchedColFields[i].getType().isAssignableFrom(Double.class)) {
-									matchedColFields[i].set(sheetBean, Double.parseDouble(getCellValue(cell)));
-
-								} else if (matchedColFields[i].getType().isAssignableFrom(Float.class)) {
-									matchedColFields[i].set(sheetBean, Float.parseFloat(getCellValue(cell)));
-
-								} else {
-									matchedColFields[i].set(sheetBean, getCellValue(cell));
-								}
-							}
-
-							// 设置父类属性
-							for (int l = 0; l < excelCheckPropertiesDeclaredFields.length; l++) {
-								Field superField = excelCheckPropertiesDeclaredFields[l];
-								superField.setAccessible(true);
-								// 当前单元格所在表名
-								if (superField.getName().equals("sheetName")) {
-									superField.set(sheetBean, sheet.getSheetName());
-									// 当前单元格所在行数
-								} else if (superField.getName().equals("rowNum")) {
-									superField.set(sheetBean, j);
-									// 当前单元格所在列名
-								} else if (superField.getName().equals("colName")) {
-									superField.set(sheetBean, excelColName);
-									// 非空校验结果
-								} else if (superField.getName().equals("isChecked")) {
-									if (cellValue == null || "".equals(cellValue.trim())) {
-										superField.set(sheetBean, false);
-									}
-								}
-							}
-
-						}
-					} else {
-						// 遍历每行的每个参数,设置进bean
-						// for (int k = 0; k < row.getPhysicalNumberOfCells(); k++) {
-						// 获取sheet类的属性对应的表中的列的cell对象
-						Integer integer = cellNameMap.get(excelColName);
-						Cell cell = row.getCell(integer);
-						if (cell != null) {
-							// 设置父类属性
-							for (int l = 0; l < excelCheckPropertiesDeclaredFields.length; l++) {
-								Field superField = excelCheckPropertiesDeclaredFields[l];
-								superField.setAccessible(true);
-								// 当前单元格所在表名
-								if (superField.getName().equals("sheetName")) {
-									superField.set(sheetBean, sheet.getSheetName());
-									// 当前单元格所在行数
-								} else if (superField.getName().equals("rowNum")) {
-									superField.set(sheetBean, j);
-									// 当前单元格所在列名
-								} else if (superField.getName().equals("colName")) {
-									superField.set(sheetBean, excelColName);
-								}
-							}
-							// 判断属性类型
-							if (matchedColFields[i].getType().isAssignableFrom(Integer.class)) {
-								matchedColFields[i].set(sheetBean, Integer.parseInt(getCellValue(cell)));
-
-							} else if (matchedColFields[i].getType().isAssignableFrom(Date.class)) {
-								matchedColFields[i].set(sheetBean, getDateCellValue(cell));
-
-							} else if (matchedColFields[i].getType().isAssignableFrom(Double.class)) {
-								matchedColFields[i].set(sheetBean, Double.parseDouble(getCellValue(cell)));
-
-							} else if (matchedColFields[i].getType().isAssignableFrom(Float.class)) {
-								matchedColFields[i].set(sheetBean, Float.parseFloat(getCellValue(cell)));
-
-							} else {
-								matchedColFields[i].set(sheetBean, getCellValue(cell));
-							}
-						}
-						// }
-					}
-				}
-			}
+			//设置子类属性
+			addCellValue(matchedColFields, sheetBean, cellNameMap, row);
+			//设置父类属性
+			addCellValue(parentMatchedColFields, sheetBean, cellNameMap, row);
 			tList.add(sheetBean);
 		}
 
@@ -342,5 +233,39 @@ public class ExcelUtil {
 			cellValue = "";
 		}
 		return cellValue;
+	}
+	
+	//设置属性的方法
+	public static <T> void addCellValue(Field[] fields,T sheetBean,Map<String, Integer> cellNameMap,Row row) throws Exception {
+		// 遍历包含自定义注解的参数
+		if (fields != null && fields.length > 0) {
+			for (int i = 0; i < fields.length; i++) {
+				fields[i].setAccessible(true);
+				Field colField = fields[i];
+				ExcelColName excelColNameAnno = colField.getAnnotation(ExcelColName.class);
+				String excelColName = excelColNameAnno.value().trim();
+					// 遍历每行的每个参数,设置进bean
+					// 获取sheet类的属性对应的表中的列的cell对象
+					Integer integer = cellNameMap.get(excelColName);
+					Cell cell = row.getCell(integer);
+					if (cell != null) {
+						// 判断属性类型
+						if (fields[i].getType().isAssignableFrom(Integer.class)) {
+							fields[i].set(sheetBean, Integer.parseInt(getCellValue(cell)));
+
+						} else if (fields[i].getType().isAssignableFrom(Date.class)) {
+							fields[i].set(sheetBean, getDateCellValue(cell));
+
+						} else if (fields[i].getType().isAssignableFrom(Double.class)) {
+							fields[i].set(sheetBean, Double.parseDouble(getCellValue(cell)));
+
+						} else if (fields[i].getType().isAssignableFrom(Float.class)) {
+							fields[i].set(sheetBean, Float.parseFloat(getCellValue(cell)));
+						} else {
+							fields[i].set(sheetBean, getCellValue(cell));
+						}
+				}
+			}
+		}
 	}
 }

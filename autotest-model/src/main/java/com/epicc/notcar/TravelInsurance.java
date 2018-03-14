@@ -2,6 +2,7 @@ package com.epicc.notcar;
 
 import com.epicc.annotation.ExcelColName;
 import com.epicc.annotation.ExcelSheetName;
+import com.epicc.general.CommonModel;
 
 /**
 * @author 刘飞
@@ -9,15 +10,12 @@ import com.epicc.annotation.ExcelSheetName;
 * @Description 旅游险实体类
 */
 @ExcelSheetName("全球旅游保险")
-public class TravelInsurance {
+public class TravelInsurance extends CommonModel{
 	@ExcelColName("cooperId")
 	private String cooperId;
 	
 	@ExcelColName("出访目的地")
 	private String businessSite;
-	
-	@ExcelColName("保险类型编号")
-	private String riskCode;
 	
 	@ExcelColName("方案编号")
 	private String rationType;
@@ -37,15 +35,6 @@ public class TravelInsurance {
 	@ExcelColName("sessionId")
 	private String sessionId;
 	
-	@ExcelColName("预计结果")
-	private	String expect;
-	
-	public String getExpect() {
-		return expect;
-	}
-	public void setExpect(String expect) {
-		this.expect = expect;
-	}
 	public String getCooperId() {
 		return cooperId;
 	}
@@ -57,12 +46,6 @@ public class TravelInsurance {
 	}
 	public void setBusinessSite(String businessSite) {
 		this.businessSite = businessSite;
-	}
-	public String getRiskCode() {
-		return riskCode;
-	}
-	public void setRiskCode(String riskCode) {
-		this.riskCode = riskCode;
 	}
 	public String getRationType() {
 		return rationType;
@@ -102,7 +85,7 @@ public class TravelInsurance {
 	}
 	@Override
 	public String toString() {
-		return "TravelInsurance [cooperId=" + cooperId + ", businessSite=" + businessSite + ", riskCode=" + riskCode
+		return "TravelInsurance [cooperId=" + cooperId + ", businessSite=" + businessSite 
 				+ ", rationType=" + rationType + ", startDate=" + startDate + ", endDate=" + endDate + ", personnes="
 				+ personnes + ", entryId=" + entryId + ", sessionId=" + sessionId + "]";
 	}

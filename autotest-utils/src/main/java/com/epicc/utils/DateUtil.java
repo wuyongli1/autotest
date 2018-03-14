@@ -11,8 +11,8 @@ import java.util.GregorianCalendar;
 * @Description 时间格式工具类
 */
 public class DateUtil {
-	public static String getDateFormat(Date date) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	public static String getDateFormat(Date date,String format) {
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		Calendar calendar = new GregorianCalendar();
 		calendar.setTime(date);
 		calendar.add(Calendar.DATE, 1);

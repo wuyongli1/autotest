@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="epiccTest">
+  <test thread-count="5" name="Test">
+  	<groups>
+  		<run>
+  			<exclude name="oldInterface"/>
+  		</run>
+  	</groups>
+  	<packages>
+  		<package name="com.epicc.notcar"></package>
+  	</packages>
+  	<!-- <classes>
+  		<class name="com.epicc.notcar.EAU_DY_Test"></class>
+  		<class name="com.epicc.notcar.TravelInsuranceTest"></class>
+  	</classes> -->
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

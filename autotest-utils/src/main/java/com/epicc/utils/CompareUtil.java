@@ -6,10 +6,13 @@ package com.epicc.utils;
 */
 public class CompareUtil {
 	public static boolean compare(String expect,String actual) {
-		if(expect.equals(actual)) {
-			return true;
-		}else {
+		Double actual_d = Double.parseDouble(actual);
+		Double expect_d = Double.parseDouble(expect);
+		Double compareResult = actual_d - expect_d;
+		if(compareResult>=0.01||compareResult<=-0.01) {
 			return false;
+		}else {
+			return true;
 		}
 	}
 }

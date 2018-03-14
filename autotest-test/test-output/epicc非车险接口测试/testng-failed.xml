@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [epicc非车险接口测试]">
+  <test thread-count="5" name="Test">
+    <groups>
+      <run>
+        <exclude name="oldInterface"/>
+      </run>
+    </groups>
+    <packages>
+      <package name="com.epicc.notcar"/>
+    </packages>
+    <classes>
+      <class name="com.epicc.notcar.EAU_DY_Test"/>
+      <class name="com.epicc.notcar.TravelInsuranceTest"/>
+      <class name="com.epicc.notcar.EAU_DY_Service"/>
+      <class name="com.epicc.notcar.TravelInsuranceService"/>
+      <class name="com.epicc.notcar.EAU_DY"/>
+      <class name="com.epicc.notcar.EAU_DY_Vo"/>
+      <class name="com.epicc.notcar.TravelInsurance"/>
+      <class name="com.epicc.notcar.TravelInsuranceVo"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Failed suite [epicc非车险接口测试] -->
