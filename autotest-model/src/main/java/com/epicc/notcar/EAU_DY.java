@@ -8,9 +8,9 @@ import com.epicc.general.PackageIdMapModel;
 /**
 * @author 刘飞
 * @version 创建时间：2018年3月8日 下午5:46:38
-* @Description 旅游险实体类
+* @Description 老非车险API接口实体类
 */
-@ExcelSheetName("不记名驾乘意外险")
+@ExcelSheetName("老非车险接口")
 public class EAU_DY extends CommonModel{
 	@ExcelColName("城市编号")
 	private String citycode;
@@ -27,7 +27,7 @@ public class EAU_DY extends CommonModel{
 	@ExcelColName("终保日期")
 	private String endDate;
 	
-	@ExcelColName("保障方案")
+	@ExcelColName("packageid")
 	private String packageId;
 	
 //	private String packageInfoList;
@@ -73,7 +73,7 @@ public class EAU_DY extends CommonModel{
 	}
 
 	public String getPackageInfoList() {
-		return "[{\"packageid\":\""+PackageIdMapModel.packageIdMap.get(productcode)+"\",\"packagename\":\"\",\"packclass\":\"\",\"peoplecount\":\""+peoplecount+"\",\"riskcode\":\""+productcode+"\"}]";
+		return "[{\"packageid\":\""+packageId+"\",\"packagename\":\"\",\"packclass\":\"\",\"peoplecount\":\""+peoplecount+"\",\"riskcode\":\""+productcode+"\"}]";
 	}
 
 	public String getPackageId() {

@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.testng.log4testng.Logger;
 import com.epicc.general.AssertResult;
 import com.epicc.notcar.EAU_DY;
-import com.epicc.notcar.TravelInsurance;
 import com.epicc.utils.CompareUtil;
 import com.epicc.utils.DateUtil;
 import net.sf.json.JSONObject;
